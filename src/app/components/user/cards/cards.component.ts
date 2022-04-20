@@ -18,16 +18,16 @@ export class CardsComponent implements OnInit {
   ngOnInit(): void {
     this.cardService.getAllCards().then(cards => {
       this.cards = cards;
-    })
+    });
   }
 
-  saveCard() {
+  public saveCard(): void {
     this.cardService.post(this.newCard).then(card => {
       if (card !== undefined) {
         this.cards.push(this.newCard);
         this.newCard = { spanish: '', translation: '', group: 1, set: '', language: ''};
       }
-    })
+    });
   }
 
   deleteCard(id: number): void {
@@ -35,7 +35,7 @@ export class CardsComponent implements OnInit {
       const cardFilter = this.cards.filter(card => card.id !== id);
       this.cards = cardFilter;
       this.showModal = false;
-    })
+    });
   }
 
 }

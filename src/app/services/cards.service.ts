@@ -14,10 +14,12 @@ export class CardsService {
       .then(rest => rest.data);
   }
 
-  post(card: Card) {
+  public post(card: Card) {
     return axios.post(this.apiUrl, card).then(res => {
       return res.data;
-    }).catch((err) => { throw err });
+    }).catch((err) => {
+      throw err;
+    });
   }
 
   getCard(id: number): Promise<Card> {

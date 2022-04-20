@@ -16,6 +16,11 @@ export default {
         "@typescript-eslint"
     ],
     "rules": {
-        "@typescript-eslint/no-inferrable-types": "off"
+        "@typescript-eslint/no-inferrable-types": "off",
+        "max-len": ["error", { "code": 80 }],
+        "space-before-function-paren": ["error", "never"],
+        "space-before-blocks": "error",
+        "keyword-spacing": ["error", { "before": true , "after": true }],
+        "no-multiple-empty-lines": ["error", { "max": 1 }]
     }
 }

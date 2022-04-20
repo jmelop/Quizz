@@ -19,25 +19,25 @@ export class CardComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedToute.params.subscribe(params => {
-      this.cardId = params['id']
+      this.cardId = params[`id`];
       if (this.cardId) {
         this.cardService.getCard(this.cardId).then(card => {
           if (card !== undefined) {
             this.card = card;
             this.originalCard = { ...card };
           }
-        })
+        });
       }
-    })
+    });
   }
 
-  updateCard() {
+  public updateCard(): void {
     this.canEdit = false;
     if (this.cardId) {
       this.cardService.updateCard(this.cardId, this.card).then(() => undefined,
         () => {
           this.card = this.originalCard;
-        })
+        });
     }
   }
 
