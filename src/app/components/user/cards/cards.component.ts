@@ -3,14 +3,14 @@ import { Card } from 'src/app/models/card.model';
 import { CardsService } from 'src/app/services/cards.service';
 
 @Component({
-  selector: 'app-card',
-  templateUrl: './card.component.html',
-  styleUrls: ['./card.component.css']
+  selector: 'app-cards',
+  templateUrl: './cards.component.html',
+  styleUrls: ['./cards.component.css']
 })
-export class CardComponent implements OnInit {
+export class CardsComponent implements OnInit {
 
   cards: Card[] = [];
-  newCard: Card = { spanish: '', translation: '', group: 1, set: '', language: ''};
+  newCard: Card = new Card();
   showModal: boolean = false;
 
   constructor(private cardService: CardsService) { }

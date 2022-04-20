@@ -6,4 +6,5 @@ export class Card {
     set: string;
     language: string;
     createAt?: string;
+    editable?: boolean;
 }

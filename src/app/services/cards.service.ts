@@ -22,6 +22,22 @@ export class CardsService {
     }).catch((err) => { throw err });
   }
 
+  getCard(id: number): Promise<Card> {
+    return axios.get(`${this.apiUrl}/${id}`).then(rest => rest.data).then(card => {
+      return {
+        spanish: card.spanish,
+        translation: card.translation,
+        group: card.group,
+        set: card.set,
+        language: card.language
+      };
+    });
+  }
+
+  updateCard(id: number, card: Card): Promise<Card> {
+    return axios.put(`${this.apiUrl}/${id}`, card);
+  }
+
   deleteCard(id: number) {
     return axios.delete(`${this.apiUrl}/${id}`).then(() => {
       return 'OK';

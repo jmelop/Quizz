@@ -1,0 +1,8 @@
+.disable-input {
+    pointer-events: none;
+    background-color: rgb(243 244 246);
+}
+
+.enable-input {
+    pointer-events: auto;
+}
