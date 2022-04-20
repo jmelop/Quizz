@@ -34,7 +34,7 @@ export class CardComponent implements OnInit {
   updateCard() {
     this.canEdit = false;
     if (this.cardId) {
-      this.cardService.updateCard(this.cardId, this.card).then(() => { },
+      this.cardService.updateCard(this.cardId, this.card).then(() => undefined,
         () => {
           this.card = this.originalCard;
         })

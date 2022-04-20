@@ -9,8 +9,6 @@ export class CardsService {
 
   private apiUrl: string = 'http://localhost:8080/api/cards';
 
-  constructor() { }
-
   getAllCards(): Promise<Card[]> {
     return axios.get(this.apiUrl)
       .then(rest => rest.data);
@@ -42,5 +40,5 @@ export class CardsService {
     return axios.delete(`${this.apiUrl}/${id}`).then(() => {
       return 'OK';
     });
-  };
+  }
 }
