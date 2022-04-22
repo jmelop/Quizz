@@ -16,36 +16,40 @@
                                     <label for="first-name" class="block text-sm font-medium text-gray-700">
                                         Word in spanish</label>
                                     <input [ngClass]="canEdit ? 'enable-input' : 'disable-input'" type="text"
-                                        name="spanish" id="spanish" [(ngModel)]="card.spanish"
-                                        class="pointer-events-none mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                        name="spanish" id="spanish" [(ngModel)]="card.spanish" class="pointer-events-none mt-1 focus:ring-indigo-500 
+                                        focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                 </div>
                                 <div class="col-span-6 sm:col-span-3">
                                     <label for="last-name" class="block text-sm font-medium text-gray-700">Word in
                                         english</label>
                                     <input [ngClass]="canEdit ? 'enable-input' : 'disable-input'" type="text"
                                         name="english" id="english" [(ngModel)]="card.translation"
-                                        class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                        class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm 
+                                        border-gray-300 rounded-md">
                                 </div>
                                 <div class="col-span-6 sm:col-span-4">
                                     <label for="email-address"
                                         class="block text-sm font-medium text-gray-700">Set</label>
-                                    <input [ngClass]="canEdit ? 'enable-input' : 'disable-input'" type="text"
-                                        name="set" id="set" [(ngModel)]="card.set"
-                                        class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                    <input [ngClass]="canEdit ? 'enable-input' : 'disable-input'" type="text" name="set"
+                                        id="set" [(ngModel)]="card.set"
+                                        class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm 
+                                        border-gray-300 rounded-md">
                                 </div>
                                 <div class="col-span-6 sm:col-span-4">
                                     <label for="email-address"
                                         class="block text-sm font-medium text-gray-700">Group</label>
                                     <input [ngClass]="canEdit ? 'enable-input' : 'disable-input'" type="text"
                                         name="group" id="group" [(ngModel)]="card.group"
-                                        class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                        class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm
+                                        border-gray-300 rounded-md">
                                 </div>
                                 <div class="col-span-6 sm:col-span-6 lg:col-span-2">
                                     <label for="language"
                                         class="block text-sm font-medium text-gray-700">Language</label>
                                     <select [ngClass]="canEdit ? 'enable-input' : 'disable-input'" id="language"
                                         name="language" [(ngModel)]="card.language"
-                                        class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                        class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm 
+                                        focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                         <option>English</option>
                                     </select>
                                 </div>
@@ -53,13 +57,21 @@
                         </div>
                         <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
                             <button type="submit" (click)="canEdit = true" *ngIf="!canEdit"
-                                class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Edit</button>
+                                class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium
+                                rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 
+                                focus:ring-offset-2 focus:ring-indigo-500">Edit</button>
                             <button type="submit" [routerLink]="['/cards']" *ngIf="!canEdit"
-                                class="ml-4 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-black bg-white hover:bg-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white">Back</button>
+                                class="ml-4 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium 
+                                rounded-md text-black bg-white hover:bg-white focus:outline-none focus:ring-2 
+                                focus:ring-offset-2 focus:ring-white">Back</button>
                             <button type="submit" (click)="updateCard()" *ngIf="canEdit"
-                                class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Update</button>
+                                class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium 
+                                rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 
+                                focus:ring-offset-2 focus:ring-indigo-500">Update</button>
                             <button type="submit" (click)="canEdit = false" *ngIf="canEdit"
-                                class="ml-4 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-black bg-white hover:bg-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white">Cancel</button>
+                                class="ml-4 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium 
+                                rounded-md text-black bg-white hover:bg-white focus:outline-none focus:ring-2 
+                                focus:ring-offset-2 focus:ring-white">Cancel</button>
                         </div>
                     </div>
                 </form>
