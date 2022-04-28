@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
-import axios from 'axios';
 import { Card } from '../models/card.model';
+import { Observable, throwError } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { catchError } from 'rxjs/operators';
+import { CardStatus } from '../models/cardStatus.model';
 
 @Injectable({
   providedIn: 'root'
@@ -9,38 +12,42 @@ export class CardsService {
 
   private apiUrl: string = 'http://localhost:8080/api/cards';
 
-  getAllCards(): Promise<Card[]> {
-    return axios.get(this.apiUrl)
-      .then(rest => rest.data);
+  constructor(private http: HttpClient) { }
+
+  getAllCards(): Observable<Card[]> {
+    return this.http.get<Card[]>(this.apiUrl)
+      .pipe(
+        catchError(e => {
+          return throwError(e);
+        })
+      );
   }
 
-  public post(card: Card) {
-    return axios.post(this.apiUrl, card).then(res => {
-      return res.data;
-    }).catch((err) => {
-      throw err;
-    });
+  post(card: Card): Observable<CardStatus> {
+    return this.http.post<CardStatus>(this.apiUrl, card).pipe(
+      catchError(e => {
+        return throwError(e);
+      })
+    );
   }
 
-  getCard(id: number): Promise<Card> {
-    return axios.get(`${this.apiUrl}/${id}`).then(rest => rest.data).then(card => {
-      return {
-        spanish: card.spanish,
-        translation: card.translation,
-        group: card.group,
-        set: card.set,
-        language: card.language
-      };
-    });
+  getCard(id: number): Observable<Card> {
+    return this.http.get<Card>(`${this.apiUrl}/${id}`).pipe(
+      catchError(e => {
+        return throwError(e);
+      })
+    );
   }
 
-  updateCard(id: number, card: Card): Promise<Card> {
-    return axios.put(`${this.apiUrl}/${id}`, card);
+  updateCard(id: number, card: Card): Observable<CardStatus> {
+    return this.http.put<CardStatus>(`${this.apiUrl}/${id}`, card);
   }
 
-  deleteCard(id: number) {
-    return axios.delete(`${this.apiUrl}/${id}`).then(() => {
-      return 'OK';
-    });
+  deleteCard(id: number): Observable<CardStatus> {
+    return this.http.delete<CardStatus>(`${this.apiUrl}/${id}`).pipe(
+      catchError(e => {
+        return throwError(e);
+      })
+    );
   }
 }

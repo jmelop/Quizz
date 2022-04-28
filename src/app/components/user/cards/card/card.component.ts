@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Card } from 'src/app/models/card.model';
 import { CardsService } from 'src/app/services/cards.service';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-card',
@@ -21,7 +22,7 @@ export class CardComponent implements OnInit {
     this.activatedToute.params.subscribe(params => {
       this.cardId = params[`id`];
       if (this.cardId) {
-        this.cardService.getCard(this.cardId).then(card => {
+        this.cardService.getCard(this.cardId).subscribe(card => {
           if (card !== undefined) {
             this.card = card;
             this.originalCard = { ...card };
@@ -34,9 +35,12 @@ export class CardComponent implements OnInit {
   public updateCard(): void {
     this.canEdit = false;
     if (this.cardId) {
-      this.cardService.updateCard(this.cardId, this.card).then(() => undefined,
+      this.cardService.updateCard(this.cardId, this.card).subscribe(cardStatus => {
+        Swal.fire('Card updated', cardStatus.message, 'success');
+      },
         () => {
           this.card = this.originalCard;
+          Swal.fire('Card updated', 'Error updating a card', 'error');
         });
     }
   }
