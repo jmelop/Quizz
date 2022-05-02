@@ -9,6 +9,7 @@ import { FooterComponent } from './components/user/footer/footer.component';
 import { FormsModule } from '@angular/forms';
 import { CardComponent } from './components/user/cards/card/card.component';
 import { HttpClientModule } from '@angular/common/http';
+import { GameComponent } from './components/user/game/game.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { HttpClientModule } from '@angular/common/http';
     NavbarComponent,
     CardsComponent,
     FooterComponent,
-    CardComponent
+    CardComponent,
+    GameComponent
   ],
   imports: [
     BrowserModule,

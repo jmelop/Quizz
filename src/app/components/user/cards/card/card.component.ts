@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Card } from 'src/app/models/card.model';
+import { Language } from 'src/app/models/language.model';
 import { CardsService } from 'src/app/services/cards.service';
+import { LanguagesService } from 'src/app/services/languages.service';
 import Swal from 'sweetalert2'
 
 @Component({
@@ -13,10 +15,12 @@ export class CardComponent implements OnInit {
 
   card: Card = new Card();
   originalCard: Card = new Card();
+  languages: Language[] = [];
+  language: Language = new Language();
   canEdit: boolean = false;
   cardId: number;
 
-  constructor(private cardService: CardsService, private activatedToute: ActivatedRoute) { }
+  constructor(private cardService: CardsService, private activatedToute: ActivatedRoute, private languageService: LanguagesService) { }
 
   ngOnInit(): void {
     this.activatedToute.params.subscribe(params => {
@@ -27,7 +31,10 @@ export class CardComponent implements OnInit {
             this.card = card;
             this.originalCard = { ...card };
           }
-        });
+        })
+        this.languageService.getAllLanguages().subscribe(languages => {
+          this.languages = languages;
+        })
       }
     });
   }
@@ -35,6 +42,7 @@ export class CardComponent implements OnInit {
   public updateCard(): void {
     this.canEdit = false;
     if (this.cardId) {
+      this.card.language = this.language;
       this.cardService.updateCard(this.cardId, this.card).subscribe(cardStatus => {
         Swal.fire('Card updated', cardStatus.message, 'success');
       },

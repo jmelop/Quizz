@@ -33,10 +33,11 @@
                             </div>
                             <div class="col-span-6 sm:col-span-6 lg:col-span-2">
                                 <label for="language" class="block text-sm font-medium text-gray-700">Language</label>
-                                <select id="language" name="language" [(ngModel)]="newCard.language"
-                                    class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none 
-                                    focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                    <option>English</option>
+                                <select id="language" name="language" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none 
+                                    focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" [(ngModel)]="language">
+                                    <option *ngFor="let language of languages" [ngValue]="language">
+                                        {{language.name}}
+                                    </option>
                                 </select>
                             </div>
                         </div>
@@ -69,8 +70,7 @@
                         <button id="menu-button" aria-expanded="true" aria-haspopup="true" (click)="showModal = true"
                             class="hidden sm:inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 
                             focus:outline-none focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 
-                            rounded-lg text-sm p-1.5"
-                            type="button">
+                            rounded-lg text-sm p-1.5" type="button">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -81,11 +81,9 @@
                                     9.0241 16.1405L11.9502 13.4133L14.6775 16.3394C15.054 16.7434 15.6868 16.7657 16.0908 
                                     16.3891C16.4948 16.0126 16.5171 15.3798 16.1405 14.9758L13.4133 12.0497L16.3394 9.32245Z"
                                     fill="currentColor" />
-                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                    d="M1 12C1 5.92487 5.92487 1 12 1C18.0751 1 23 5.92487 23 12C23 18.0751 18.0751 23 12 
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M1 12C1 5.92487 5.92487 1 12 1C18.0751 1 23 5.92487 23 12C23 18.0751 18.0751 23 12 
                                     23C5.92487 23 1 18.0751 1 12ZM12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 
-                                    3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21Z"
-                                    fill="currentColor" />
+                                    3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21Z" fill="currentColor" />
                             </svg>
                         </button>
                     </div>
@@ -94,15 +92,13 @@
                         <span class="text-sm text-gray-500 dark:text-gray-400">{{card.translation}}</span>
                         <span class="text-sm text-gray-500 dark:text-gray-400">{{card.spanish}}</span>
                         <div class="flex mt-4 space-x-3 lg:mt-6">
-                            <a href="#" [routerLink]="['/cards', card.id]"
-                                class="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-white bg-blue-700 
+                            <a href="#" [routerLink]="['/cards', card.id]" class="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-white bg-blue-700 
                                 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 
                                 dark:hover:bg-blue-700 dark:focus:ring-blue-800">More</a>
                         </div>
                     </div>
                 </div>
-                <div *ngIf="showModal"
-                    class="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 md:inset-0 h-modal md:h-full 
+                <div *ngIf="showModal" class="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 md:inset-0 h-modal md:h-full 
                     bg-gray-100 opacity-50">
                     <div class="p-4 w-full max-w-md h-full md:h-auto m-auto mt-20">
                         <!-- Modal content -->
@@ -114,11 +110,9 @@
                                     text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white">
                                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
                                         xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd"
-                                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 
+                                        <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 
                                             10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 
-                                            10 4.293 5.707a1 1 0 010-1.414z"
-                                            clip-rule="evenodd"></path>
+                                            10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                                     </svg>
                                 </button>
                             </div>
@@ -137,8 +131,7 @@
                                     (click)="deleteCard(card.id!)">
                                     Yes, I'm sure
                                 </button>
-                                <button type="button" (click)="showModal = false"
-                                    class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 
+                                <button type="button" (click)="showModal = false" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 
                                     rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 
                                     dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 
                                     dark:focus:ring-gray-600">No,

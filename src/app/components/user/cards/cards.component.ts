@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Card } from 'src/app/models/card.model';
+import { Language } from 'src/app/models/language.model';
 import { CardsService } from 'src/app/services/cards.service';
+import { LanguagesService } from 'src/app/services/languages.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -11,24 +13,30 @@ import Swal from 'sweetalert2';
 export class CardsComponent implements OnInit {
 
   cards: Card[] = [];
+  languages: Language[] = [];
+  language: Language = new Language();
   newCard: Card = new Card();
   showModal: boolean = false;
 
-  constructor(private cardService: CardsService) { }
+  constructor(private cardService: CardsService,private languageService: LanguagesService) { }
 
   ngOnInit(): void {
     this.cardService.getAllCards().subscribe(cards => {
       this.cards = cards;
     });
+    this.languageService.getAllLanguages().subscribe(languages => {
+      this.languages = languages;
+    })
   }
 
   public saveCard(): void {
+    this.newCard.language = this.language;
     this.cardService.post(this.newCard).subscribe(cardStatus => {
       if (cardStatus !== undefined) {
         this.newCard.id = cardStatus.card.id;
-        console.log(cardStatus)
         this.cards.push(this.newCard);
-        this.newCard = { spanish: '', translation: '', group: 1, set: '', language: '' };
+        this.newCard = new Card();
+        this.language = new Language();
         Swal.fire('New card', cardStatus.message, 'success');
       }
     }), () => {
