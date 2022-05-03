@@ -16,11 +16,16 @@ export class CardComponent implements OnInit {
   card: Card = new Card();
   originalCard: Card = new Card();
   languages: Language[] = [];
+  filteredLanguages: Language[] = [];
   language: Language = new Language();
   canEdit: boolean = false;
   cardId: number;
 
-  constructor(private cardService: CardsService, private activatedToute: ActivatedRoute, private languageService: LanguagesService) { }
+  constructor(
+    private cardService: CardsService,
+    private activatedToute: ActivatedRoute,
+    private languageService: LanguagesService
+  ) { }
 
   ngOnInit(): void {
     this.activatedToute.params.subscribe(params => {
@@ -30,10 +35,8 @@ export class CardComponent implements OnInit {
           if (card !== undefined) {
             this.card = card;
             this.originalCard = { ...card };
+            this.getLanguages();
           }
-        })
-        this.languageService.getAllLanguages().subscribe(languages => {
-          this.languages = languages;
         })
       }
     });
@@ -42,8 +45,10 @@ export class CardComponent implements OnInit {
   public updateCard(): void {
     this.canEdit = false;
     if (this.cardId) {
-      this.card.language = this.language;
+      const formatedLanguage = this.languages.find((language: Language) => language.name == this.language.name)
+      this.card.language = formatedLanguage!;
       this.cardService.updateCard(this.cardId, this.card).subscribe(cardStatus => {
+        this.filterLanguages();
         Swal.fire('Card updated', cardStatus.message, 'success');
       },
         () => {
@@ -51,6 +56,18 @@ export class CardComponent implements OnInit {
           Swal.fire('Card updated', 'Error updating a card', 'error');
         });
     }
+  }
+
+  private getLanguages(): void {
+    this.languageService.getAllLanguages().subscribe(languages => {
+      this.languages = languages;
+      this.filterLanguages();
+      this.language = this.card.language;
+    })
+  }
+
+  private filterLanguages(): void {
+    this.filteredLanguages = this.languages.filter(language => language.name !== this.card.language.name);
   }
 
 }
