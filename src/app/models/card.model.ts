@@ -1,3 +1,4 @@
+import { Category } from "./category.model";
 import { Language } from "./language.model";
 
 export class Card {
@@ -5,7 +6,7 @@ export class Card {
     spanish: string;
     translation: string;
     group: number;
-    set: string;
+    category: Category;
     language: Language;
     createAt?: string;
     editable?: boolean;
