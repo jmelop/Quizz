@@ -1,7 +1,7 @@
 <app-navbar></app-navbar>
 <div class="flex flex-col h-screen">
     <div class="mt-10 justify-center m-auto">
-        <div class="px-4 sm:px-0">
+        <div class="px-4 sm:px-0 flex">
             <h3 class="text-lg font-medium leading-6 text-gray-900 mb-4">Add new card</h3>
         </div>
         <div class="mt-5 md:mt-0 md:col-span-2">
@@ -37,7 +37,8 @@
                             </div>
                             <div class="col-span-6 sm:col-span-6 lg:col-span-2">
                                 <label for="language" class="block text-sm font-medium text-gray-700">Language</label>
-                                <select id="language" name="language" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none 
+                                <select id="language" name="language" class="mt-1 block w-full py-2 px-3 border border-gray-300 
+                                bg-white rounded-md shadow-sm focus:outline-none 
                                     focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" [(ngModel)]="language">
                                     <option *ngFor="let language of languages" [ngValue]="language">
                                         {{language.name}}
@@ -96,9 +97,10 @@
                         <span class="text-sm text-gray-500 dark:text-gray-400">{{card.translation}}</span>
                         <span class="text-sm text-gray-500 dark:text-gray-400">{{card.spanish}}</span>
                         <div class="flex mt-4 space-x-3 lg:mt-6">
-                            <a href="#" [routerLink]="['/cards', card.id]" class="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-white bg-blue-700 
-                                rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 
-                                dark:hover:bg-blue-700 dark:focus:ring-blue-800">More</a>
+                            <a href="#" [routerLink]="['/cards', card.id]"
+                                class="inline-flex items-center py-2 px-4 text-sm 
+                            font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none 
+                            focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">More</a>
                         </div>
                     </div>
                 </div>
@@ -135,15 +137,20 @@
                                     (click)="deleteCard(card.id!)">
                                     Yes, I'm sure
                                 </button>
-                                <button type="button" (click)="showModal = false" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 
-                                    rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 
-                                    dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 
-                                    dark:focus:ring-gray-600">No,
+                                <button type="button" (click)="showModal = false" class="text-gray-500 bg-white hover:bg-gray-100 
+                                focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium 
+                                px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 
+                                dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">No,
                                     cancel</button>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="hidden sm:block" aria-hidden="true">
+            <div class="py-5">
+                <div class="border-t border-gray-200"></div>
             </div>
         </div>
     </div>
