@@ -30,13 +30,16 @@
                                             1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                                     </svg>
                                 </button>
-                                <ul class="dropdown-menu hidden text-gray-700 bg-white rounded-lg">
-                                    <li class=""><a
+                                <ul class="dropdown-menu hidden text-gray-700 bg-white rounded-lg border-2">
+                                    <li class="cursor-pointer"><a
                                             class="rounded-t bg-white hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
-                                            (click)="saveCategory()">New Category</a></li>
-                                    <li class=""><a
+                                            (click)="setAlert('category')">New Category</a></li>
+                                    <div class="hidden sm:block" aria-hidden="true">
+                                        <div class="border-t border-gray-200"></div>
+                                    </div>
+                                    <li class="cursor-pointer"><a
                                             class="rounded-b bg-white hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
-                                            (click)="saveLanguage()">New Language</a></li>
+                                            (click)="setAlert('language')">New Language</a></li>
                                 </ul>
                             </div>
                         </div>

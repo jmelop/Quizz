@@ -3,6 +3,7 @@ import { Observable, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { Language } from '../models/language.model';
+import { LanguageStatus } from '../models/languageStatus.model';
 
 @Injectable({
   providedIn: 'root'
@@ -21,4 +22,13 @@ export class LanguagesService {
         })
       );
   }
+
+  saveLanguage(language: Language): Observable<LanguageStatus> {
+    return this.http.post<LanguageStatus>(this.apiUrl, language).pipe(
+      catchError(e => {
+        return throwError(e);
+      })
+    );
+  }
+  
 }

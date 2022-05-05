@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Category } from '../models/category.model';
+import { CategoryStatus } from '../models/categoryStatus.model';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,14 @@ export class CategoriesService {
           return throwError(e);
         })
       )
+  }
+
+  saveCategory(category: Category): Observable<CategoryStatus> {
+    return this.http.post<CategoryStatus>(this.apiUrl, category).pipe(
+      catchError(e => {
+        return throwError(e);
+      })
+    );
   }
 
 }

@@ -5,6 +5,7 @@ import { Language } from 'src/app/models/language.model';
 import { CardsService } from 'src/app/services/cards.service';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { LanguagesService } from 'src/app/services/languages.service';
+import { SharedService } from 'src/app/services/shared.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -25,7 +26,8 @@ export class CardsComponent implements OnInit {
   constructor(
     private cardService: CardsService,
     private languageService: LanguagesService,
-    private categoryService: CategoriesService
+    private categoryService: CategoriesService,
+    private sharedService: SharedService
   ) { }
 
   ngOnInit(): void {
@@ -37,6 +39,12 @@ export class CardsComponent implements OnInit {
     });
     this.categoryService.getAllCategories().subscribe(categories => {
       this.categories = categories;
+    })
+    this.sharedService.newLanguage.subscribe(language => {
+      this.languages.push(language);
+    })
+    this.sharedService.newCategory.subscribe(category => {
+      this.categories.push(category);
     })
   }
 
