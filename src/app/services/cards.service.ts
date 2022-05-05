@@ -10,7 +10,7 @@ import { CardStatus } from '../models/cardStatus.model';
 })
 export class CardsService {
 
-  private apiUrl: string = 'http://localhost:8080/api/cards';
+  private apiUrl = 'http://localhost:8080/api/cards';
 
   constructor(private http: HttpClient) { }
 

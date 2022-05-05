@@ -28,28 +28,28 @@ export class NavbarComponent implements OnInit {
   public setAlert(type: string): void {
     Swal.fire({
       title: 'New ' + type + '!',
-      text: type + ":",
+      text: type + ':',
       input: 'text',
       showCancelButton: true,
       preConfirm: (value) => {
         if (!value) {
           Swal.showValidationMessage(
             '<i class="fa fa-info-circle"></i> The ' + type + ' is required'
-          )
+          );
         } else if (value.length < 2 || value.length > 12) {
           Swal.showValidationMessage(
             '<i class="fa fa-info-circle"></i> ' + type + ' size must be between 2 and 12'
-          )
+          );
         }
       }
     }).then((result) => {
       if (typeof result.value === 'string') {
         this.saveItem(result.value, type);
       }
-    })
+    });
   }
 
-  saveItem(value: string, type: string) {
+  saveItem(value: string, type: string): void {
     if (value && type === 'category') {
       this.category.name = value;
       this.categoryService.saveCategory(this.category).subscribe(categoryStatus => {

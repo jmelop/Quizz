@@ -1,5 +1,5 @@
-import { Category } from "./category.model";
-import { Language } from "./language.model";
+import { Category } from './category.model';
+import { Language } from './language.model';
 
 export class Card {
     id?: number;

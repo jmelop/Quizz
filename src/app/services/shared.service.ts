@@ -21,12 +21,11 @@ export class SharedService {
 
   newCategory = this.category.asObservable();
 
-  changeLanguage(language: Language) {
-    this.language.next(language)
+  changeLanguage(language: Language): void {
+    this.language.next(language);
   }
 
-  changeCategory(category: Category) {
-    this.category.next(category)
+  changeCategory(category: Category): void {
+    this.category.next(category);
   }
-  
 }

@@ -10,7 +10,7 @@ import { LanguageStatus } from '../models/languageStatus.model';
 })
 export class LanguagesService {
 
-  private apiUrl: string = 'http://localhost:8080/api/languages';
+  private apiUrl = 'http://localhost:8080/api/languages';
 
   constructor(private http: HttpClient) { }
 
@@ -30,5 +30,4 @@ export class LanguagesService {
       })
     );
   }
-  
 }

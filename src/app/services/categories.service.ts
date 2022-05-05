@@ -10,7 +10,7 @@ import { CategoryStatus } from '../models/categoryStatus.model';
 })
 export class CategoriesService {
 
-  private apiUrl: string = 'http://localhost:8080/api/categories';
+  private apiUrl = 'http://localhost:8080/api/categories';
 
   constructor(private http: HttpClient) { }
 
@@ -20,7 +20,7 @@ export class CategoriesService {
         catchError(e => {
           return throwError(e);
         })
-      )
+      );
   }
 
   saveCategory(category: Category): Observable<CategoryStatus> {

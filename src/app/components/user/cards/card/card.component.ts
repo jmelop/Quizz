@@ -6,7 +6,7 @@ import { Language } from 'src/app/models/language.model';
 import { CardsService } from 'src/app/services/cards.service';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { LanguagesService } from 'src/app/services/languages.service';
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-card',
@@ -23,7 +23,7 @@ export class CardComponent implements OnInit {
   categories: Category[] = [];
   filteredCategories: Category[] = [];
   category: Category = new Category();
-  canEdit: boolean = false;
+  canEdit = false;
   cardId: number;
 
   constructor(
@@ -44,7 +44,7 @@ export class CardComponent implements OnInit {
             this.getLanguages();
             this.getCategories();
           }
-        })
+        });
       }
     });
   }
@@ -52,9 +52,9 @@ export class CardComponent implements OnInit {
   public updateCard(): void {
     this.canEdit = false;
     if (this.cardId) {
-      const formatedLanguage = this.languages.find((language: Language) => language.name == this.language.name);
+      const formatedLanguage = this.languages.find((language: Language) => language.name === this.language.name);
       this.card.language = formatedLanguage!;
-      const formatedCategory = this.categories.find((category: Category) => category.name == this.category.name);
+      const formatedCategory = this.categories.find((category: Category) => category.name === this.category.name);
       this.card.category = formatedCategory!;
       this.cardService.updateCard(this.cardId, this.card).subscribe(cardStatus => {
         this.filterLanguages();
@@ -73,7 +73,7 @@ export class CardComponent implements OnInit {
       this.languages = languages;
       this.filterLanguages();
       this.language = this.card.language;
-    })
+    });
   }
 
   private getCategories(): void {
@@ -81,14 +81,14 @@ export class CardComponent implements OnInit {
       this.categories = categories;
       this.filterCategories();
       this.category = this.card.category;
-    })
+    });
   }
 
-  private filterLanguages() {
+  private filterLanguages(): void {
     this.filteredLanguages = this.languages.filter(language => language.name !== this.card.language.name);
   }
 
-  private filterCategories() {
+  private filterCategories(): void {
     this.filteredCategories = this.categories.filter(category => category.name !== this.card.category.name);
   }
 

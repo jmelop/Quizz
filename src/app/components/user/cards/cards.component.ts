@@ -21,7 +21,7 @@ export class CardsComponent implements OnInit {
   categories: Category[] = [];
   category: Category = new Category();
   newCard: Card = new Card();
-  showModal: boolean = false;
+  showModal = false;
 
   constructor(
     private cardService: CardsService,
@@ -39,13 +39,8 @@ export class CardsComponent implements OnInit {
     });
     this.categoryService.getAllCategories().subscribe(categories => {
       this.categories = categories;
-    })
-    this.sharedService.newLanguage.subscribe(language => {
-      this.languages.push(language);
-    })
-    this.sharedService.newCategory.subscribe(category => {
-      this.categories.push(category);
-    })
+    });
+    this.checkSharedService();
   }
 
   public saveCard(): void {
@@ -73,6 +68,15 @@ export class CardsComponent implements OnInit {
       Swal.fire('Card deleted', cardStatus.message, 'success');
     }, () => {
       Swal.fire('Card deleted', 'Error deleting a card', 'error');
+    });
+  }
+
+  private checkSharedService(): void {
+    this.sharedService.newLanguage.subscribe(language => {
+      this.languages.push(language);
+    });
+    this.sharedService.newCategory.subscribe(category => {
+      this.categories.push(category);
     });
   }
 
