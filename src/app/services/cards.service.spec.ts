@@ -1,13 +1,12 @@
-import { TestBed } from '@angular/core/testing';
-
 import { CardsService } from './cards.service';
 
 describe('CardsService', () => {
   let service: CardsService;
+  let httpClientSpy: { post: jasmine.Spy };
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(CardsService);
+    httpClientSpy = jasmine.createSpyObj('HttpClient', ['post']);
+    service = new CardsService(httpClientSpy as any);
   });
 
   it('should be created', () => {

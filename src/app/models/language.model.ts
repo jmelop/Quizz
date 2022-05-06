@@ -1,4 +1,4 @@
 export class Language {
-    id: string;
+    id: number;
     name: string;
 }
