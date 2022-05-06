@@ -2,8 +2,7 @@ import { Observable, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { Category } from '../models/category.model';
-import { CategoryStatus } from '../models/categoryStatus.model';
+import { Category, CategoryStatus } from '../models/category.model';
 
 @Injectable({
   providedIn: 'root'

@@ -11,3 +11,8 @@ export class Card {
     createAt?: string;
     editable?: boolean;
 }
+
+export class CardStatus {
+    card: Card;
+    message: string;
+}
