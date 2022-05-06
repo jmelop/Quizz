@@ -16,6 +16,7 @@ import Swal from 'sweetalert2';
 export class CardsComponent implements OnInit {
 
   cards: Card[] = [];
+  tempCard: Card = new Card();
   languages: Language[] = [];
   language: Language = new Language();
   categories: Category[] = [];
@@ -60,11 +61,18 @@ export class CardsComponent implements OnInit {
     };
   }
 
-  deleteCard(id: number): void {
-    this.cardService.deleteCard(id).subscribe(cardStatus => {
+  public checkModal(event: any) {
+    this.showModal = true;
+    this.tempCard = event;
+  }
+
+  public deleteCard(): void {
+    const id = this.tempCard.id;
+    this.cardService.deleteCard(id!).subscribe(cardStatus => {
       const cardFilter = this.cards.filter(card => card.id !== id);
       this.cards = cardFilter;
       this.showModal = false;
+      this.tempCard = new Card();
       Swal.fire('Card deleted', cardStatus.message, 'success');
     }, () => {
       Swal.fire('Card deleted', 'Error deleting a card', 'error');

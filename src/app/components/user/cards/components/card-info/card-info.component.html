@@ -1,7 +1,7 @@
 <app-navbar></app-navbar>
 <div class="flex flex-col h-screen">
     <div class="mt-10 justify-center m-auto">
-        <div class="mt-10 sm:mt-0">
+        <div *ngIf="cardExist" class="mt-10 sm:mt-0">
             <div class="md:col-span-1">
                 <div class="px-4 sm:px-0 mb-4">
                     <h3 class="text-lg font-medium leading-6 text-gray-900">Card Information</h3>
@@ -84,6 +84,11 @@
                         </div>
                     </div>
                 </form>
+            </div>
+        </div>
+        <div *ngIf="!cardExist" class="items-start justify-center m-auto max-w-3xl p-9 flex-grow">
+            <div class="px-4 sm:px-0">
+                <h3 class="text-lg font-medium leading-6 text-gray-900 mb-4">The card does not exist</h3>
             </div>
         </div>
     </div>

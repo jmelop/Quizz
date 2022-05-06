@@ -6,14 +6,15 @@ import { Language } from 'src/app/models/language.model';
 import { CardsService } from 'src/app/services/cards.service';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { LanguagesService } from 'src/app/services/languages.service';
+import { SharedService } from 'src/app/services/shared.service';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-card',
-  templateUrl: './card.component.html',
-  styleUrls: ['./card.component.css']
+  selector: 'app-card-info',
+  templateUrl: './card-info.component.html',
+  styleUrls: ['./card-info.component.css']
 })
-export class CardComponent implements OnInit {
+export class CardInfoComponent implements OnInit {
 
   card: Card = new Card();
   originalCard: Card = new Card();
@@ -25,12 +26,14 @@ export class CardComponent implements OnInit {
   category: Category = new Category();
   canEdit = false;
   cardId: number;
+  cardExist = false;
 
   constructor(
     private cardService: CardsService,
     private activatedToute: ActivatedRoute,
     private languageService: LanguagesService,
-    private categoryService: CategoriesService
+    private categoryService: CategoriesService,
+    private sharedService: SharedService
   ) { }
 
   ngOnInit(): void {
@@ -39,6 +42,7 @@ export class CardComponent implements OnInit {
       if (this.cardId) {
         this.cardService.getCard(this.cardId).subscribe(card => {
           if (card !== undefined) {
+            this.cardExist = true;
             this.card = card;
             this.originalCard = { ...card };
             this.getLanguages();
@@ -47,6 +51,7 @@ export class CardComponent implements OnInit {
         });
       }
     });
+    this.checkSharedService();
   }
 
   public updateCard(): void {
@@ -90,6 +95,17 @@ export class CardComponent implements OnInit {
 
   private filterCategories(): void {
     this.filteredCategories = this.categories.filter(category => category.name !== this.card.category.name);
+  }
+
+  private checkSharedService(): void {
+    this.sharedService.newLanguage.subscribe(language => {
+      this.filteredLanguages.push(language);
+      this.languages.push(language);
+    });
+    this.sharedService.newCategory.subscribe(category => {
+      this.filteredCategories.push(category);
+      this.categories.push(category);
+    });
   }
 
 }
