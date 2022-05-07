@@ -9,9 +9,10 @@ import { FooterComponent } from './components/user/footer/footer.component';
 import { FormsModule } from '@angular/forms';
 import { CardComponent } from './components/user/cards/components/card/card.component';
 import { HttpClientModule } from '@angular/common/http';
-import { GameComponent } from './components/user/game/game.component';
+import { GamesComponent } from './components/user/games/games.component';
 import { CardInfoComponent } from './components/user/cards/components/card-info/card-info.component';
 import { ModalComponent } from '../components/modal/modal.component';
+import { GameComponent } from './components/user/games/components/game/game.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { ModalComponent } from '../components/modal/modal.component';
     CardsComponent,
     FooterComponent,
     CardComponent,
+    GamesComponent,
     GameComponent,
     CardInfoComponent,
     ModalComponent
