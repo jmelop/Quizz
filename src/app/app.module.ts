@@ -13,6 +13,7 @@ import { GamesComponent } from './components/user/games/games.component';
 import { CardInfoComponent } from './components/user/cards/components/card-info/card-info.component';
 import { ModalComponent } from '../components/modal/modal.component';
 import { GameComponent } from './components/user/games/components/game/game.component';
+import { PlayGameComponent } from './components/user/games/components/play-game/play-game.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { GameComponent } from './components/user/games/components/game/game.comp
     GamesComponent,
     GameComponent,
     CardInfoComponent,
-    ModalComponent
+    ModalComponent,
+    PlayGameComponent
   ],
   imports: [
     BrowserModule,

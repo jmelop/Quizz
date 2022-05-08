@@ -22,6 +22,15 @@ export class LanguagesService {
       );
   }
 
+  getLanguage(id: number): Observable<Language> {
+    return this.http.get<Language>(`${this.apiUrl}/${id}`)
+      .pipe(
+        catchError(e => {
+          return throwError(e);
+        })
+      );
+  }
+
   saveLanguage(language: Language): Observable<LanguageStatus> {
     return this.http.post<LanguageStatus>(this.apiUrl, language).pipe(
       catchError(e => {

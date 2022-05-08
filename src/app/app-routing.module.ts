@@ -4,6 +4,7 @@ import { CardInfoComponent } from './components/user/cards/components/card-info/
 import { CardsComponent } from './components/user/cards/cards.component';
 import { GamesComponent } from './components/user/games/games.component';
 import { HomeComponent } from './components/user/home/home.component';
+import { PlayGameComponent } from './components/user/games/components/play-game/play-game.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: 'play',
     component: GamesComponent
+  },
+  {
+    path: 'play/:id',
+    component: PlayGameComponent
   }
 ];
 

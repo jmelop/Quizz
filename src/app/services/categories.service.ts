@@ -22,6 +22,15 @@ export class CategoriesService {
       );
   }
 
+  getCategory(id: number): Observable<Category> {
+    return this.http.get<Category>(`${this.apiUrl}/${id}`)
+      .pipe(
+        catchError(e => {
+          return throwError(e);
+        })
+      );
+  }
+
   saveCategory(category: Category): Observable<CategoryStatus> {
     return this.http.post<CategoryStatus>(this.apiUrl, category).pipe(
       catchError(e => {
