@@ -10,8 +10,9 @@ import { CardsService } from 'src/app/services/cards.service';
 })
 export class PlayGameComponent implements OnInit {
 
-  categoryId = '';
   cards: Card[] = [];
+  position: number = 0;
+  categoryId = '';
 
   constructor(
     private activatedToute: ActivatedRoute,
@@ -27,6 +28,14 @@ export class PlayGameComponent implements OnInit {
         })
       }
     })
+  }
+
+  public changeCard(arrow: string): void {
+    if (arrow === 'right' && (this.position + 1) < this.cards.length) {
+      this.position += 1;
+    } else if (arrow === 'left' && this.position > 0) {
+      this.position -= 1;
+    }
   }
 
 }
