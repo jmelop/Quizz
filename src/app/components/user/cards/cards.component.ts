@@ -16,9 +16,11 @@ import Swal from 'sweetalert2';
 export class CardsComponent implements OnInit {
 
   cards: Card[] = [];
+  filteredCards: Card[] = [];
   tempCard: Card = new Card();
   languages: Language[] = [];
   language: Language = new Language();
+  languageFilter: Language = new Language();
   categories: Category[] = [];
   category: Category = new Category();
   newCard: Card = new Card();
@@ -34,9 +36,11 @@ export class CardsComponent implements OnInit {
   ngOnInit(): void {
     this.cardService.getAllCards().subscribe(cards => {
       this.cards = cards;
+      this.filteredCards = cards;
     });
     this.languageService.getAllLanguages().subscribe(languages => {
       this.languages = languages;
+      this.languageFilter.name = 'All';
     });
     this.categoryService.getAllCategories().subscribe(categories => {
       this.categories = categories;
@@ -51,6 +55,8 @@ export class CardsComponent implements OnInit {
       if (cardStatus !== undefined) {
         this.newCard.id = cardStatus.card.id;
         this.cards.push(this.newCard);
+        this.filteredCards = this.cards;
+        this.languageFilter.name = 'All';
         this.newCard = new Card();
         this.language = new Language();
         this.category = new Category();
@@ -77,6 +83,14 @@ export class CardsComponent implements OnInit {
     }, () => {
       Swal.fire('Card deleted', 'Error deleting a card', 'error');
     });
+  }
+
+  public filterCards() {
+    if (this.languageFilter.name !== 'All') {
+      this.filteredCards = this.cards.filter(card => card.language.name === this.languageFilter.name);
+    } else {
+      this.filteredCards = this.cards;
+    }
   }
 
   private checkSharedService(): void {
