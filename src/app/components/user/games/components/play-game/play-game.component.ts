@@ -12,7 +12,9 @@ export class PlayGameComponent implements OnInit {
 
   cards: Card[] = [];
   position: number = 0;
+  translation = true;
   categoryId = '';
+  category: string = '';
 
   constructor(
     private activatedToute: ActivatedRoute,
@@ -25,6 +27,9 @@ export class PlayGameComponent implements OnInit {
       if (this.categoryId) {
         this.cardService.getAllByCategoryId(Number(this.categoryId)).subscribe(cards => {
           this.cards = cards;
+          if (cards.length > 0) {
+            this.category = cards[0].category.name;
+          }
         })
       }
     })

@@ -2,11 +2,31 @@
 <div class="flex flex-col h-screen">
     <div class="mt-10 justify-center m-auto">
         <div class="w-[32rem]" *ngIf="cards.length > 0">
-            <div
-                class="mt-10 rounded-t-lg border shadow-md dark:bg-gray-800 dark:border-gray-700">
-                <div class="flex flex-col items-center py-28">
-                    <h5 class="mb-1 text-3xl font-medium dark:text-gray-200">
+            <div class="mt-10 rounded-t-lg border shadow-md dark:bg-gray-800 dark:border-gray-700 cursor-pointer">
+                <div class="flex justify-end px-4 pt-4">
+                    <button id="menu-button" aria-expanded="true" aria-haspopup="true" class="hidden sm:inline-block text-gray-500 dark:text-gray-400
+                     hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:outline-none 
+                     focus:ring-gray-200 dark:focus:ring-gray-700 
+                            rounded-lg text-sm p-1.5" type="button" (click)="translation =! translation">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12.9842 15C12.9842 15.5523 13.4319 16 13.9842 16C14.3416 16 14.6552 15.8125 
+                                14.832 15.5305L17.5196 12.8429C17.9101 12.4524 17.9101 11.8192 17.5196 11.4287C17.1291 
+                                11.0382 16.4959 11.0382 16.1054 11.4287L14.9842 12.5499L14.9842 5C14.9842 4.44771 
+                                14.5364 4 13.9842 4C13.4319 4 12.9842 4.44772 12.9842 5L12.9842 14.9506C12.984 14.9597 
+                                12.984 14.9688 12.9842 14.9779V15Z" fill="currentColor" />
+                            <path d="M11.016 9C11.016 8.44771 10.5682 8 10.016 8C9.65856 8 9.34496 8.18748 9.16813 8.46947L6.48052
+                                11.1571C6.08999 11.5476 6.08999 12.1808 6.48051 12.5713C6.87104 12.9618 7.5042 12.9618 7.89473 
+                                12.5713L9.01596 11.4501L9.01596 19C9.01596 19.5523 9.46367 20 10.016 20C10.5682 20 11.016 
+                                19.5523 11.016 19L11.016 9.04945C11.0161 9.04033 11.0161 9.03121 11.016 9.02208V9Z"
+                                fill="currentColor" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="flex flex-col items-center pb-28 pt-16">
+                    <h5 *ngIf="translation" class="mb-1 text-3xl font-medium dark:text-gray-200">
                         {{cards[position].translation}}</h5>
+                    <h5 *ngIf="!translation" class="mb-1 text-3xl font-medium dark:text-gray-200">
+                        {{cards[position].spanish}}</h5>
                 </div>
             </div>
             <div class="bg-gray-600 rounded-b-lg text-center py-4">
@@ -16,14 +36,12 @@
                             <path
                                 d="M11.9481 14.8285L10.5339 16.2427L6.29122 12L10.5339 7.7574L11.9481 9.17161L10.1196 11H17.6568V13H10.1196L11.9481 14.8285Z"
                                 fill="white" />
-                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                d="M4.22183 19.7782C-0.0739419 15.4824 -0.0739419 8.51759 4.22183 4.22183C8.51759 
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M4.22183 19.7782C-0.0739419 15.4824 -0.0739419 8.51759 4.22183 4.22183C8.51759 
                                 -0.0739419 15.4824 -0.0739419 19.7782 4.22183C24.0739 8.51759 24.0739 15.4824 
                                 19.7782 19.7782C15.4824 24.0739 8.51759 24.0739 4.22183 19.7782ZM5.63604 
                                 18.364C2.12132 14.8492 2.12132 9.15076 5.63604 5.63604C9.15076 2.12132 14.8492 
                                 2.12132 18.364 5.63604C21.8787 9.15076 21.8787 14.8492 18.364 18.364C14.8492 
-                                21.8787 9.15076 21.8787 5.63604 18.364Z"
-                                fill="white" />
+                                21.8787 9.15076 21.8787 5.63604 18.364Z" fill="white" />
                         </svg>
                     </button>
                     <p class="text-gray-200">{{position+1}}/{{cards.length}}</p>
@@ -32,13 +50,11 @@
                             <path
                                 d="M12.0519 14.8285L13.4661 16.2427L17.7088 12L13.4661 7.7574L12.0519 9.17161L13.8804 11H6.34321V13H13.8803L12.0519 14.8285Z"
                                 fill="white" />
-                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                d="M19.7782 19.7782C24.0739 15.4824 24.0739 8.51759 19.7782 4.22183C15.4824 -0.0739417 
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M19.7782 19.7782C24.0739 15.4824 24.0739 8.51759 19.7782 4.22183C15.4824 -0.0739417 
                                 8.51759 -0.0739417 4.22183 4.22183C-0.0739417 8.51759 -0.0739417 15.4824 4.22183 
                                 19.7782C8.51759 24.0739 15.4824 24.0739 19.7782 19.7782ZM18.364 18.364C21.8787 14.8492 21.8787 
                                 9.15076 18.364 5.63604C14.8492 2.12132 9.15076 2.12132 5.63604 5.63604C2.12132 9.15076 2.12132 
-                                14.8492 5.63604 18.364C9.15076 21.8787 14.8492 21.8787 18.364 18.364Z"
-                                fill="white" />
+                                14.8492 5.63604 18.364C9.15076 21.8787 14.8492 21.8787 18.364 18.364Z" fill="white" />
                         </svg>
                     </button>
                 </div>
@@ -47,6 +63,53 @@
         <div *ngIf="cards.length == 0" class="items-start justify-center m-auto max-w-3xl p-9 flex-grow">
             <div class="px-4 sm:px-0">
                 <h3 class="text-lg font-medium leading-6 text-gray-900 mb-4">The card list is empty</h3>
+            </div>
+        </div>
+        <div class="hidden sm:block" aria-hidden="true">
+            <div class="py-5">
+                <div class="border-t border-gray-200"></div>
+            </div>
+        </div>
+    </div>
+    <div class="flex flex-col mt-24 m-auto">
+        <div class="">
+            <h3 class="text-lg font-medium leading-6 text-gray-900 mb-4">List of category: {{category}}</h3>
+        </div>
+        <div class="overflow-x-auto w-[41rem]">
+            <div class="py-4 inline-block min-w-full">
+                <div class="overflow-hidden border-solid border rounded-md ">
+                    <table class="min-w-full text-center">
+                        <thead class="bg-gray-800">
+                            <tr>
+                                <th scope="col" class="text-white text-sm font-medium px-6 py-4">
+                                    Spanish</th>
+                                <th scope="col" class="text-white text-sm font-medium px-6 py-4">
+                                    Translation</th>
+                                <th scope="col" class="text-white text-sm font-medium px-6 py-4">
+                                    Group</th>
+                                <th scope="col" class="text-white text-sm font-medium px-6 py-4">
+                                    Date</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white">
+                            <tr class="bg-white border-b" *ngFor="let card of cards">
+                                <td class="px-6 py-4 text-sm font-medium whitespace-nowrap text-gray-900">
+                                    {{card.spanish}}</td>
+                                <td class="px-6 py-4 text-sm font-medium whitespace-nowrap text-gray-900">
+                                    {{card.translation}}</td>
+                                <td class="px-6 py-4 text-sm font-medium whitespace-nowrap text-gray-900">
+                                    {{card.group}}</td>
+                                <td class="px-6 py-4 text-sm font-medium whitespace-nowrap text-gray-900">
+                                    {{card.createAt}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="hidden sm:block" aria-hidden="true">
+            <div class="py-5">
+                <div class="border-t border-gray-200"></div>
             </div>
         </div>
     </div>
