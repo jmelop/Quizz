@@ -22,6 +22,15 @@ export class CardsService {
       );
   }
 
+  getAllByCategoryId(id: number): Observable<Card[]> {
+    return this.http.get<Card[]>(`${this.apiUrl}/cat/${id}`)
+      .pipe(
+        catchError(e => {
+          return throwError(e);
+        })
+      );
+  }
+
   post(card: Card): Observable<CardStatus> {
     return this.http.post<CardStatus>(this.apiUrl, card).pipe(
       catchError(e => {

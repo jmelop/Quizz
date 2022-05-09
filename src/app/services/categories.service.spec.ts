@@ -1,5 +1,4 @@
 import { of } from 'rxjs';
-
 import { CategoriesService } from './categories.service';
 
 describe('CategoriesService', () => {
