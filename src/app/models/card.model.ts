@@ -8,6 +8,7 @@ export class Card {
     group: number;
     category: Category;
     language: Language;
+    favorite: boolean;
     createAt?: string;
     editable?: boolean;
 }

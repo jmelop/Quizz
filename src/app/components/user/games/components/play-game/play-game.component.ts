@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Card } from 'src/app/models/card.model';
 import { CardsService } from 'src/app/services/cards.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-play-game',
@@ -11,6 +12,7 @@ import { CardsService } from 'src/app/services/cards.service';
 export class PlayGameComponent implements OnInit {
 
   cards: Card[] = [];
+  card: Card = new Card();
   position: number = 0;
   translation = true;
   categoryId = '';
@@ -18,7 +20,7 @@ export class PlayGameComponent implements OnInit {
 
   constructor(
     private activatedToute: ActivatedRoute,
-    private cardService: CardsService,
+    private cardService: CardsService
   ) { }
 
   ngOnInit(): void {
@@ -41,6 +43,22 @@ export class PlayGameComponent implements OnInit {
     } else if (arrow === 'left' && this.position > 0) {
       this.position -= 1;
     }
+  }
+
+  public updateCard(card: Card, favorite: boolean) {
+    this.card = card;
+    this.card.favorite = favorite;
+    this.cardService.updateCard(this.card.id!, this.card).subscribe(newCard => {
+      this.card = new Card();
+      this.cards.map(card => {
+        if (card.id === newCard.card.id) {
+          card.favorite = newCard.card.favorite;
+        }
+      })
+    },
+      () => {
+        Swal.fire('Card updated', 'Error updating a card', 'error');
+      });
   }
 
 }

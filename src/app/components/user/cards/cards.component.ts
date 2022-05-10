@@ -51,6 +51,7 @@ export class CardsComponent implements OnInit {
   public saveCard(): void {
     this.newCard.language = this.language;
     this.newCard.category = this.category;
+    this.newCard.favorite = false;
     this.cardService.post(this.newCard).subscribe(cardStatus => {
       if (cardStatus !== undefined) {
         this.newCard.id = cardStatus.card.id;
@@ -76,6 +77,7 @@ export class CardsComponent implements OnInit {
     const id = this.tempCard.id;
     this.cardService.deleteCard(id!).subscribe(cardStatus => {
       const cardFilter = this.cards.filter(card => card.id !== id);
+      this.filteredCards = cardFilter;
       this.cards = cardFilter;
       this.showModal = false;
       this.tempCard = new Card();

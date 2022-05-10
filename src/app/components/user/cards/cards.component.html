@@ -70,8 +70,7 @@
             </div>
             <div class="ml-auto mb-2">
                 <select id="languageFilter" name="languageFilter" class="mt-1 block w-full py-2 pl-3 border border-gray-300 bg-white rounded-md shadow-sm 
-                                        focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                    [(ngModel)]="languageFilter.name" (change)="filterCards()">
+                    focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" [(ngModel)]="languageFilter.name" (change)="filterCards()">
                     <option>All</option>
                     <option *ngFor="let language of languages" [ngValue]="language.name">
                         {{language.name}}
@@ -81,7 +80,10 @@
         </div>
         <div class="inline-grid grid-cols-3 gap-4">
             <div *ngFor="let card of filteredCards">
-                <app-card routerLink="/cards" [card]="card" (deleteCard)="checkModal($event)">
+                <app-card 
+                    routerLink="/cards" 
+                    [card]="card" 
+                    (deleteCard)="checkModal($event)">
                 </app-card>
             </div>
         </div>
@@ -96,7 +98,11 @@
             <h3 class="text-lg font-medium leading-6 text-gray-900 mb-4">The card list is empty</h3>
         </div>
     </div>
-    <app-modal *ngIf="showModal" (accept)="deleteCard()" (cancel)="showModal = false" (close)="showModal = false">
+    <app-modal 
+        *ngIf="showModal" 
+        (accept)="deleteCard()" 
+        (cancel)="showModal = false" 
+        (close)="showModal = false">
     </app-modal>
     <app-footer></app-footer>
 </div>

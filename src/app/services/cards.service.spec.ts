@@ -27,7 +27,8 @@ describe('CardsService', () => {
       language: {
         id: 2,
         name: 'German'
-      }
+      },
+      favorite: true
     }
 
     const cardResult = {
@@ -43,9 +44,10 @@ describe('CardsService', () => {
         },
         "language": {
           "id": 1,
-          "name": 'German'
+          "name": "German"
         },
-        "createAt": "2022-05-08T20:46:50.795+00:00"
+        "createAt": "2022-05-08T20:46:50.795+00:00",
+        "favorite": true
       }
     }
 
