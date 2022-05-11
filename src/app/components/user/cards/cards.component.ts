@@ -81,6 +81,7 @@ export class CardsComponent implements OnInit {
       this.cards = cardFilter;
       this.showModal = false;
       this.tempCard = new Card();
+      this.checkExistCards();
       Swal.fire('Card deleted', cardStatus.message, 'success');
     }, () => {
       Swal.fire('Card deleted', 'Error deleting a card', 'error');
@@ -93,6 +94,10 @@ export class CardsComponent implements OnInit {
     } else {
       this.filteredCards = this.cards;
     }
+  }
+
+  private checkExistCards() {
+
   }
 
   private checkSharedService(): void {

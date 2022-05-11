@@ -93,7 +93,7 @@
             </div>
         </div>
     </div>
-    <div *ngIf="cards.length == 0" class="items-start justify-center m-auto max-w-3xl p-9 flex-grow">
+    <div *ngIf="cards.length == 0 || filteredCards.length == 0" class="items-start justify-center m-auto max-w-3xl p-9 flex-grow">
         <div class="px-4 sm:px-0">
             <h3 class="text-lg font-medium leading-6 text-gray-900 mb-4">The card list is empty</h3>
         </div>
