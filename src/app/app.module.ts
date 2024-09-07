@@ -8,34 +8,27 @@ import { CardsComponent } from './components/user/cards/cards.component';
 import { FooterComponent } from './components/user/footer/footer.component';
 import { FormsModule } from '@angular/forms';
 import { CardComponent } from './components/user/cards/components/card/card.component';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { GamesComponent } from './components/user/games/games.component';
 import { CardInfoComponent } from './components/user/cards/components/card-info/card-info.component';
 import { ModalComponent } from '../components/modal/modal.component';
 import { GameComponent } from './components/user/games/components/game/game.component';
 import { PlayGameComponent } from './components/user/games/components/play-game/play-game.component';
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    NavbarComponent,
-    CardsComponent,
-    FooterComponent,
-    CardComponent,
-    GamesComponent,
-    GameComponent,
-    CardInfoComponent,
-    ModalComponent,
-    PlayGameComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    HttpClientModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        AppComponent,
+        HomeComponent,
+        NavbarComponent,
+        CardsComponent,
+        FooterComponent,
+        CardComponent,
+        GamesComponent,
+        GameComponent,
+        CardInfoComponent,
+        ModalComponent,
+        PlayGameComponent
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        AppRoutingModule,
+        FormsModule], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule { }
